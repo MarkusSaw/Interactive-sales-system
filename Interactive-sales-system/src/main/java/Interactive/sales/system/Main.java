@@ -7,7 +7,7 @@ import Interactive.sales.system.resultwriter.ResultWriter;
 public class Main {
 
         public static void main(String[] args) throws Exception {
-    //  String filePath = "C:\\Users\\user\\IdeaProjects\\Планировщик задач приложение\\gfree\\Hibernate Example\\Interactive-sales-system\\discount_day.txt";
+    // String filePath = "C:\\Users\\user\\IdeaProjects\\Планировщик задач приложение\\gfree\\Hibernate Example\\Interactive-sales-system\\discount_day.txt";
 
             ResultWriter.process("discount_day.txt");
 
