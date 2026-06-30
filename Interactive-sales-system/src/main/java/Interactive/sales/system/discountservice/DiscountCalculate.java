@@ -8,12 +8,7 @@ import java.util.*;
 
 public class DiscountCalculate {
 
-
-    private final double price = SetParameters.Inputparameters.price.getValue();
-    private final double discount = SetParameters.Inputparameters.discount.getValue();
-    private final double discountStep = SetParameters.Inputparameters.discountstep.getValue();
-
-    public Map<String, Double> calculate(List<DtoOrder> orders) {
+    public Map<String, Double> calculate(List<DtoOrder> orders , double price , double discount , double discountStep) {
 
 
         List<DtoOrder> sortedOrders = new ArrayList<>(orders);

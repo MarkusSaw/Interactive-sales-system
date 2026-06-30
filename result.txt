@@ -10,4 +10,3 @@ Carryover - 281865.0
 Electricity - 36800.0
 Ancillary - 300000.0
 Pyramid - 101000.0
-.
