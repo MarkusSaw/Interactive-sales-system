@@ -1,6 +1,6 @@
 package Interactive.sales.system.discountservice;
 
-// Считает стоимость заказов со скидками.
+//Считает стоимость заказов со скидками.
 
 import Interactive.sales.system.adapter.DtoOrder;
 import Interactive.sales.system.setparameters.SetParameters;

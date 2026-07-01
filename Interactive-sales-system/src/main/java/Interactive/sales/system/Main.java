@@ -1,6 +1,6 @@
 package Interactive.sales.system;
 
-//Точка входа в программу,открывает отсюда файл и потом создаёт результат.
+// Точка входа в программу,открывает отсюда файл и потом создаёт результат.
 
 import Interactive.sales.system.service.Service;
 

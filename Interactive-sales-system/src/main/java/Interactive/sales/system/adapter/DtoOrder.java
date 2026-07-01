@@ -1,6 +1,6 @@
 package Interactive.sales.system.adapter;
 
-// Модель заказа ,строки создаются в объекты.
+//Модель заказа ,строки создаются в объекты.
 
 import java.time.LocalDateTime;
 

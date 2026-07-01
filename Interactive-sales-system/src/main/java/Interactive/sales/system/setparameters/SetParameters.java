@@ -1,6 +1,6 @@
 package Interactive.sales.system.setparameters;
 
-// Хранит настройки программы (цену, скидку, шаг скидки).
+//Хранит настройки программы (цену, скидку, шаг скидки).
 
 public class SetParameters {
 

@@ -1,6 +1,6 @@
 package Interactive.sales.system.adapter;
 
-//Читает файлы типа txt и преваращает в объект Order
+// Читает файлы типа txt и преваращает в объект Order
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
