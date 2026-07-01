@@ -43,6 +43,6 @@ public class Service {
         double discountStep = SetParameters.Inputparameters.discountstep.getValue();
         Map<String, Double> results = service.calculate(orders, price, discount, discountStep );
 
-
+        fileService.WriteReader("result.txt", results);
     }
 }
