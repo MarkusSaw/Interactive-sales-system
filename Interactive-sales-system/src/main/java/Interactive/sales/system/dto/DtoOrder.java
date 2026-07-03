@@ -1,4 +1,4 @@
-package Interactive.sales.system.adapter;
+package Interactive.sales.system.dto;
 
 //Модель заказа ,строки создаются в объекты.
 

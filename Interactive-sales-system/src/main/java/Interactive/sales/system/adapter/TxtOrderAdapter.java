@@ -1,13 +1,16 @@
 package Interactive.sales.system.adapter;
 
-// Читает файлы без типа  и преваращает в объект Order
+// Читает файлы типа txt и преваращает в объект Order
+
+import Interactive.sales.system.dto.DtoOrder;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HashReaderOrderAdapter implements OrderAdapter {
+
+public class TxtOrderAdapter implements OrderAdapter {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -16,7 +19,7 @@ public class HashReaderOrderAdapter implements OrderAdapter {
         List<DtoOrder> orders = new ArrayList<>();
 
         for (String line : lines) {
-            String[] parts = line.split("#");
+            String[] parts = line.split("\\|");
 
             LocalDateTime time = LocalDateTime.parse(parts[0], FORMATTER);
             String company = parts[1];
@@ -27,4 +30,3 @@ public class HashReaderOrderAdapter implements OrderAdapter {
         return orders;
     }
 }
-
