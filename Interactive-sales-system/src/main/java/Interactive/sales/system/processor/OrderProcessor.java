@@ -7,25 +7,37 @@ import Interactive.sales.system.adapter.OrderAdapterFactory;
 import Interactive.sales.system.discountservice.DiscountCalculate;
 import Interactive.sales.system.fileservice.FileService;
 import Interactive.sales.system.dto.DtoOrder;
+
 import java.util.List;
 import java.util.Map;
 
 public class OrderProcessor {
 
+    private final String filePath;
+    private final double price;
+    private final double discount;
+    private final double discountStep;
+    private final FileService fileService;
+    private final OrderAdapterFactory adapterFactory;
+    private final DiscountCalculate discountCalculate;
 
-    public static void process(String filePath, double price, double discount, double discountStep) throws Exception {
+    public OrderProcessor(String filePath, double price, double discount, double discountStep, FileService fileService, OrderAdapterFactory adapterFactory, DiscountCalculate discountCalculate) {
+
+        this.filePath = filePath;
+        this.price = price;
+        this.discount = discount;
+        this.discountStep = discountStep;
+        this.fileService = fileService;
+        this.adapterFactory = adapterFactory;
+        this.discountCalculate = discountCalculate;
+    }
 
 
-        FileService fileService = new FileService();
+    public void process() throws Exception {
         List<String> lines = fileService.readLines(filePath);
-
-
-        OrderAdapter adapter = OrderAdapterFactory.getAdapter(filePath);
+        OrderAdapter adapter = adapterFactory.getAdapter(filePath);
         List<DtoOrder> orders = adapter.adapt(lines);
-
-
-        DiscountCalculate service = new DiscountCalculate();
-        Map<String, Double> results = service.calculate(orders, price, discount, discountStep);
+        Map<String, Double> results = discountCalculate.calculate(orders, price, discount, discountStep);
 
         fileService.WriteReader("result.txt", results);
     }
