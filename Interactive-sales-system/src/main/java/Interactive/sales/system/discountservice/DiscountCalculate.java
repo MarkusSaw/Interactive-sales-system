@@ -3,6 +3,7 @@ package Interactive.sales.system.discountservice;
 //Считает стоимость заказов со скидками
 
 import Interactive.sales.system.dto.DtoOrder;
+
 import java.util.*;
 
 public class DiscountCalculate {
@@ -15,7 +16,10 @@ public class DiscountCalculate {
 
         List<DtoOrder> sortedOrders = new ArrayList<>(orders);
         Map<String, Double> result = new LinkedHashMap<>();
-
+// LinkedHashMap сохраняет порядок добавления элементов.
+// Это важно для вывода результата в том порядке,
+// в котором компании вошли в программу и выйдут в том же порядке.
+// Если была бы просто хеш мапа - компании выводились в случайном порядке.
         double currentDiscount = discount;
 
         for (DtoOrder order : sortedOrders) {

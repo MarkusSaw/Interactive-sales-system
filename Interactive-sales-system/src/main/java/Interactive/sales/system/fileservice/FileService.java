@@ -17,7 +17,7 @@ public class FileService {
     }
 
 
-    public void WriteReader(String filePath, Map<String, Double> results) throws IOException {
+    public void writeResults(Map<String, Double> results) throws IOException {
         List<String> outputLines = results.entrySet().stream()
                 .map(e -> e.getKey() + " - " + e.getValue())
                 .toList();

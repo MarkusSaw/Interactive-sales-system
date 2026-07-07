@@ -39,6 +39,6 @@ public class OrderProcessor {
         List<DtoOrder> orders = adapter.adapt(lines);
         Map<String, Double> results = discountCalculate.calculate(orders, price, discount, discountStep);
 
-        fileService.WriteReader("result.txt", results);
+        fileService.writeResults(results);
     }
 }
