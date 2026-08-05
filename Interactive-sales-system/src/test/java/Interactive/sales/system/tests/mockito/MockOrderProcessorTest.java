@@ -9,51 +9,65 @@ import Interactive.sales.system.fileservice.FileService;
 import Interactive.sales.system.processor.OrderProcessor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class MockOrderProcessorTest {
 
-@Mock
-OrderProcessor testingProcessor;
+    @Mock
+    FileService fileService;
 
-@InjectMocks
-String filePath;
+    @Mock
+    OrderAdapterFactory adapterFactory;
 
-@InjectMocks
-double price;
+    @Mock
+    DiscountCalculate discountCalculate;
 
-@InjectMocks
-double discount;
-
-@InjectMocks
-double discountStep;
-
-@InjectMocks
-FileService fileService;
-
-@InjectMocks
-OrderAdapterFactory adapterFactory;
-
-@InjectMocks
-DiscountCalculate discountCalculate;
-
-
-
+    @Mock
+    OrderAdapter adapter;
 
     @Test
     void testingProcess ()throws Exception{
-        List<String> lines = fileService.readLines(filePath);
-        OrderAdapter adapter = adapterFactory.getAdapter(filePath);
-        List<DtoOrder> orders = adapter.adapt(lines);
-        Map<String, Double> results = discountCalculate.calculate(orders, price, discount, discountStep);
-        when(testingProcessor.process()).thenReturn();
+        String filePath = "result.txt";
+        double price = 10.0;
+        double discount = 50.0;
+        double discountStep = 5.0;
+        List<String> lines = List.of("Broke Company, 1000");
+        List<DtoOrder> orders = List.of(new DtoOrder(LocalDateTime.now(), "Broke Company", 1000));
+        Map<String, Double> results = Map.of("Broke Company", 5000.0);
+
+
+        FileService fileService = mock(FileService.class);
+        OrderAdapter adapter = mock(OrderAdapter.class);
+        OrderAdapterFactory adapterFactory = mock(OrderAdapterFactory.class);
+        DiscountCalculate discountCalculate = mock(DiscountCalculate.class);
+
+        OrderProcessor processor = new OrderProcessor(
+                filePath, price, discount, discountStep,
+                fileService, adapterFactory, discountCalculate
+        );
+
+
+        when(fileService.readLines(filePath)).thenReturn(lines);
+        when( adapterFactory.getAdapter(filePath)).thenReturn(adapter);
+        when(adapter.adapt(lines)).thenReturn(orders);
+        when(discountCalculate.calculate(orders, price, discount, discountStep)).thenReturn(results);
+
+        processor.process();
+
+        verify(fileService).readLines(filePath);
+        verify(adapterFactory).getAdapter(filePath);
+        verify(adapter).adapt(lines);
+        verify(discountCalculate).calculate(orders, price, discount, discountStep);
+
     }
 }
