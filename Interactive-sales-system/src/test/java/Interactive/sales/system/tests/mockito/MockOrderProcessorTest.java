@@ -23,17 +23,6 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class MockOrderProcessorTest {
 
-    @Mock
-    FileService fileService;
-
-    @Mock
-    OrderAdapterFactory adapterFactory;
-
-    @Mock
-    DiscountCalculate discountCalculate;
-
-    @Mock
-    OrderAdapter adapter;
 
     @Test
     void testingProcess ()throws Exception{
